@@ -2,12 +2,15 @@ import React, { Component } from 'react';
 import firebase  from 'firebase';
 import $  from 'jquery';
 
+
 var config = {
-  apiKey: "AIzaSyA4fvT8hFdxycqU3vhP5HUDY_Ube7zZusE",
-  authDomain: "firebaase-tutorial-with-shiv.firebaseapp.com",
-  databaseURL: "https://firebaase-tutorial-with-shiv.firebaseio.com",
-  projectId: "firebaase-tutorial-with-shiv",
+  apiKey: "************your api key****************",
+  authDomain: "************your auth domain****************",
+  databaseURL: "************your database url****************",
+  projectId:"************your projectid****************",
 };
+
+
 
 firebase.initializeApp(config);
 var db = firebase.firestore();
@@ -34,38 +37,18 @@ function addUser(user){
     uid : user.uid,
   }
 
-  
+    return $.ajax({
+      type: 'GET',
+      url: 'https://yourendpoint/cloudapi/',
+      data: object,
+      success: function(msg){
+          alert('wow' + msg);
+      }
+    })
 
-  // return $.ajax({
-  //   type:'POST',
-  //   url: 'https://us-central1-firebaase-tutorial-with-shiv.cloudfunctions.net/helloWorld',
-  //   data: object,
-  //   contentType: 'application/x-www-form-urlencoded'
-  // });
 
-  return $.ajax({
-    type: 'GET',
-    // make sure you respect the same origin policy with this url:
-    // http://en.wikipedia.org/wiki/Same_origin_policy 
-    url: 'https://us-central1-cloud-function-with-shiv.cloudfunctions.net/cloudapi/',
-    // url: 'http://localhost:4000/',
-    data: object,
-    success: function(msg){
-        alert('wow' + msg);
-    }
-});
-     
 } 
 
-// var postIdTokenToSessionLogin = function(url, idToken, csrfToken) {
-//   // POST to session login endpoint.
-//   return $.ajax({
-//     type:'POST',
-//     url: 'https://us-central1-firebaase-tutorial-with-shiv.cloudfunctions.net/helloWorld',
-//     data: {idToken: idToken, csrfToken: csrfToken},
-//     contentType: 'application/x-www-form-urlencoded'
-//   });
-// };
 
 class App extends Component {  
   componentDidMount(){
@@ -98,6 +81,14 @@ class App extends Component {
         isAnonymous:"csdcsdcsdc",
         uid:"scscsd",
       });
+
+      // request data----- { displayName: 'sccscs',
+      // email: 'csdcdscsc',
+      // emailVerified: 'scscdscsd',
+      // photoURL: 'scsdcsd',
+      // isAnonymous: 'csdcsdcsdc',
+      // uid: 'scscsd' }
+      
     }
 
   }
